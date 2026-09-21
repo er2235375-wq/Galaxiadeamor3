@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxia de Amor | Digitalbox s.w</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+        body { background-color: #030014; color: #ffffff; min-height: 100vh; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; align-items: center; position: relative; }
+        .galaxy-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(white 1px, transparent 0), radial-gradient(rgba(255, 105, 180, 0.6) 1.5px, transparent 0), radial-gradient(rgba(138, 43, 226, 0.5) 2px, transparent 0); background-size: 50px 50px, 90px 90px, 130px 130px; background-position: 0 0, 20px 30px, 40px 10px; z-index: 1; opacity: 0.8; }
+        .nebula { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(138,43,226,0.2) 0%, rgba(255,78,136,0.08) 50%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; filter: blur(50px); pointer-events: none; }
+        header { z-index: 3; text-align: center; padding: 20px; margin-top: 10px; }
+        header h1 { font-size: 1.3rem; font-weight: 600; letter-spacing: 2px; background: linear-gradient(135deg, #ff758c, #ff7eb3, #c7d2fe); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(255, 117, 140, 0.4); }
+        header p { font-size: 0.75rem; color: #b0aec4; margin-top: 4px; }
+        .sky-container { position: relative; width: 100%; max-width: 400px; height: 380px; z-index: 3; margin: auto; }
+        .star-node { position: absolute; background: #ffffff; border-radius: 50%; cursor: pointer; box-shadow: 0 0 10px #fff, 0 0 20px #ff758c; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .star-node:hover, .star-node.active { transform: scale(1.6); box-shadow: 0 0 15px #fff, 0 0 30px #ff4e88; background: #ffeb3b; }
+        .star-1 { width: 12px; height: 12px; top: 18%; left: 22%; animation: pulse 2s infinite alternate; }
+        .star-2 { width: 16px; height: 16px; top: 28%; left: 78%; animation: pulse 2.5s infinite alternate; }
+        .star-3 { width: 10px; height: 10px; top: 52%; left: 28%; animation: pulse 1.8s infinite alternate; }
+        .star-4 { width: 14px; height: 14px; top: 68%; left: 75%; animation: pulse 2.2s infinite alternate; }
+        .star-5 { width: 18px; height: 18px; top: 82%; left: 45%; animation: pulse 3s infinite alternate; }
+        .star-center { width: 22px; height: 22px; top: 44%; left: 50%; transform: translate(-50%, -50%); background: #ffd700; box-shadow: 0 0 20px #ffaa00; animation: pulse 1.5s infinite alternate; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 0.7; } 100% { transform: scale(1.2); opacity: 1; } }
+        .message-modal { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 350px; background: rgba(25, 22, 38, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 20px; padding: 18px; text-align: center; z-index: 10; box-shadow: 0 10px 30px rgba(0,0,0,0.6); transition: all 0.3s ease; }
+        .message-modal h3 { font-size: 0.8rem; color: #ff758c; margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase; }
+        .message-modal p { font-size: 0.9rem; color: #eae8f2; font-style: italic; font-weight: 300; line-height: 1.4; }
+        .cta-footer { z-index: 3; width: 100%; padding: 15px 20px 25px; background: linear-gradient(to top, rgba(3,0,20,0.95), transparent); text-align: center; }
+        .btn-cta { background: linear-gradient(135deg, #ff4e88, #ff758c); color: white; text-decoration: none; border: none; border-radius: 50px; padding: 12px 24px; font-size: 0.8rem; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 20px rgba(255, 78, 136, 0.5); transition: transform 0.2s ease; }
+        .btn-cta:active { transform: scale(0.96); }
+        .brand-tag { font-size: 0.65rem; color: #8b85a1; margin-top: 8px; display: block; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+    <div class="galaxy-bg"></div>
+    <div class="nebula"></div>
+    <header>
+        <h1>GALAXIA DE AMOR</h1>
+        <p>Toca cada estrella para descubrir un mensaje secreto 🌌</p>
+    </header>
+    <div class="sky-container">
+        <div class="star-node star-1" onclick="showPhrase(0)" title="Estrella 1"></div>
+        <div class="star-node star-2" onclick="showPhrase(1)" title="Estrella 2"></div>
+        <div class="star-node star-center" onclick="showPhrase(2)" title="Estrella Central"></div>
+        <div class="star-node star-3" onclick="showPhrase(3)" title="Estrella 3"></div>
+        <div class="star-node star-4" onclick="showPhrase(4)" title="Estrella 4"></div>
+        <div class="star-node star-5" onclick="showPhrase(5)" title="Estrella 5"></div>
+        <div class="message-modal" id="modalCard">
+            <h3 id="starTitle">✨ Toca una estrella ✨</h3>
+            <p id="starText">Cada estrella en este universo guarda un sentimiento especial diseñado para enamorar.</p>
+        </div>
+    </div>
+    <div class="cta-footer">
+        <a href="https://wa.me/?text=Hola%20Digitalbox%20s.w,%20vi%20la%20Galaxia%20de%20Amor%20y%20quiero%20cotizar%20un%20regalo%20digital%20personalizado%20para%20alguien%20especial." class="btn-cta" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i> ¡Crea tu propio detalle aquí!
+        </a>
+        <span class="brand-tag">DIGITALBOX S.W • Regalos Digitales Únicos</span>
+    </div>
+    <script>
+        const phrases = [
+            { title: "✨ Estrella del Destino", text: "“Cruzaste mi universo sin avisar y te convertiste en mi galaxia entera.”" },
+            { title: "💫 Estrella del Infinito", text: "“Si cada estrella fuera un pensamiento de amor hacia ti, ya no cabrían en el cielo.”" },
+            { title: "⭐ La Estrella Principal", text: "“Eres la flor más hermosa de mi jardín interno, la luz que ilumina todos mis días.”" },
+            { title: "✨ Estrella Fugaz", text: "“Pedí un deseo al universo y apareciste tú para hacerlo realidad.”" },
+            { title: "🌟 Constelación de Tus Ojos", text: "“No necesito mirar el cielo nocturno para ver estrellas; basta con ver tu sonrisa.”" },
+            { title: "🌠 Estrella del Mañana", text: "“Contigo quiero explorar todos los rincones del tiempo y del espacio. Te amo.”" }
+        ];
+        function showPhrase(index) {
+            const titleElement = document.getElementById('starTitle');
+            const textElement = document.getElementById('starText');
+            const selectedCard = phrases[index];
+            titleElement.style.opacity = 0; textElement.style.opacity = 0;
+            setTimeout(() => {
+                titleElement.innerText = selectedCard.title;
+                textElement.innerText = selectedCard.text;
+                titleElement.style.opacity = 1; textElement.style.opacity = 1;
+            }, 150);
+        }
+    </script>
+</body>
+</html>
